@@ -75,4 +75,5 @@ typings/
 # FuseBox cache
 .fusebox/
 
-./.data
+# Data directory
+.data
