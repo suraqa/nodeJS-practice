@@ -28,7 +28,7 @@ http.createServer((request, response) => {
 
     request.on("end", () => {
         buffer += decoder.end()
-        
+
         const chosenHandler = typeof (router[path]) !== "undefined" ? router[path] : handlers.notFound
 
         // Data obj to send alongwith the callback
@@ -37,7 +37,7 @@ http.createServer((request, response) => {
             "method": request.method.toLowerCase(),
             "queryString": queryString,
             "headers": request.headers,
-            "payload": JSON.parse(buffer)
+            "payload": typeof(buffer) === "string" && buffer.length > 0 ? JSON.parse(buffer) : {}
         }
 
         chosenHandler(data, (statusCode, payLoad) => {
@@ -47,7 +47,7 @@ http.createServer((request, response) => {
             payload = JSON.stringify(payload)
             response.setHeader("Content-Type", "application/json")
             response.writeHead(statuscode)
-            response.end(payload)
+            response.end(JSON.stringify(data))
         })
     })
 
