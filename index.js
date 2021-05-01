@@ -47,7 +47,7 @@ http.createServer((request, response) => {
             payload = JSON.stringify(payload)
             response.setHeader("Content-Type", "application/json")
             response.writeHead(statuscode)
-            response.end(JSON.stringify(data))
+            response.end(JSON.stringify(payLoad))
         })
     })
 
