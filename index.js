@@ -37,7 +37,7 @@ http.createServer((request, response) => {
             "method": request.method.toLowerCase(),
             "queryString": queryString,
             "headers": request.headers,
-            "payload": typeof(buffer) === "string" && buffer.length > 0 ? JSON.parse(buffer) : {}
+            "payload": typeof (buffer) === "string" && buffer.length > 0 ? JSON.parse(buffer) : {}
         }
 
         chosenHandler(data, (statusCode, payLoad) => {
@@ -58,5 +58,6 @@ http.createServer((request, response) => {
 // Requests router
 const router = {
     "hello": handlers.hello,
-    "users": handlers.users
+    "users": handlers.users,
+    "tokens": handlers.tokens
 }
